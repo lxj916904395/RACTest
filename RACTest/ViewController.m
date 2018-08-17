@@ -31,6 +31,67 @@
 - (void)funcrac{
     @weakify(self);
     
+    //takeUntil : subject2 信号会阻止 subject1 发送
+//    RACSubject *subject1 = [RACSubject subject];
+//    RACSubject *subject2 = [RACSubject subject];
+//    [[subject1 takeUntil:subject2] subscribeNext:^(id  _Nullable x) {
+//        NSLog(@"%@",x);
+//    }];
+//    
+//    [subject1 sendNext:@"1-1"];
+//    [subject2 sendNext:@"2-1"];
+//    [subject1 sendNext:@"1-2"];
+//    [subject2 sendNext:@"2-2"];
+
+    
+//    RACSignal *signal1  = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+//        sleep(2);
+//        NSLog(@"请求A");
+//        [subscriber sendNext:@"signal1"];
+//        [subscriber sendCompleted];
+//        return nil;
+//    }];
+//
+//    RACSignal *signal2 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+//        NSLog(@"请求B");
+//        [subscriber sendNext:@"signal2"];
+//        return nil;
+//    }];
+//    //then : 信号依次执行
+//    //signal1 执行完才会执行 signal2，signal1 必须调用 sendCompleted 当次信号处理完毕
+//    [[signal1 then:^RACSignal * _Nonnull{
+//        return signal2;
+//    }] subscribeNext:^(id  _Nullable x) {
+//        NSLog(@"%@",x);
+//    }] ;
+    
+    //将两个信号合并
+//        RACSignal *signal1 = self.accountTF.rac_textSignal;
+//        RACSignal *signal2 = self.pwdTF.rac_textSignal;
+//    [[RACSignal combineLatest:@[signal1,signal2] reduce:^id (id value1,id value2){
+//        //返回值、参数，根据具体的信号类型而定
+//        return [NSString stringWithFormat:@"%@==%@",value1,value2];
+//    }] subscribeNext:^(id  _Nullable x) {
+//        NSLog(@"%@",x);
+//    }] ;
+    
+    //combineLatestWith:也属于信号合并
+    //会保存最新的一次信号
+//    RACSignal *signal1 = self.accountTF.rac_textSignal;
+//    RACSignal *signal2 = [self.loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside];
+//    [[signal1 combineLatestWith:signal2] subscribeNext:^(id  _Nullable x) {
+//        NSLog(@"%@",x);
+//    }];
+    
+    //zipWith:也属于信号合并
+    //会保存每次信号
+//    RACSignal *signal1 = self.accountTF.rac_textSignal;
+//    RACSignal *signal2 = [self.loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside];
+//    [[signal1 zipWith:signal2] subscribeNext:^(id  _Nullable x) {
+//        NSLog(@"%@",x);
+//    }];
+    
+    
 //    //合并
 //    RACSignal *signal1 = self.accountTF.rac_textSignal;
 //    RACSignal *signal2 = [self.loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside];
